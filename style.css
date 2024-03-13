@@ -1,0 +1,132 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Container */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100%; /* Allow full viewport width */
+  }
+  
+  /* Main Board (Made square using aspect ratio) */
+  .main-board {
+    /* background-color: aqua; */
+    background-image: url("./Assets/GameBoard.jpg");
+    background-position: center;
+    background-size: cover;
+    width: 500px; /* Set width to 50% */
+    height: 90vh; /* Allow height to adjust based on width */
+    aspect-ratio: 1; /* Maintain a square aspect ratio */
+    border-radius: 5px;
+    border: 1.5px solid red;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    /*Add some padding for visual separation*/
+    overflow: hidden; /* Prevent board image from overflowing */
+    opacity: 1;
+    z-index: 0;
+  }
+  
+  /* Board Squares (generated dynamically using JavaScript) */
+  .block {
+    /* Adjust styles for squares as needed (e.g., size, color, border) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    height: 50px ;
+    width: 50px;
+    z-index: 0.5;
+  }
+  
+  /* Row (generated dynamically using JavaScript) */
+  .row {
+    display: flex;
+    /* flex-wrap: wrap; Allow squares to wrap on smaller screens */
+  }
+  
+  /* Dice Container */
+  .dice-container {
+    position: absolute; /* Position dice container appropriately */
+    bottom: 10px; /* Place at bottom on small screens */
+    right: 10px; /* Position to the right */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #dice-id {
+    height: 80px;
+    width: 80px;
+  }
+  
+  .dice-container button {
+    background-color: rgb(213, 37, 37);
+    padding: 10px 30px;
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 10px;
+    border: 1px solid red;
+    box-shadow: 0px 3px 10px gray;
+  }
+  .goti
+  {
+    height: 40px;
+    width: 40px;
+  }
+  .player_piece {
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    z-index: 1;
+    position: relative; 
+    transition: top 0.5s ease-in-out, left 0.5s ease-in-out; 
+  }
+ 
+
+  /* Media Queries for Responsiveness */
+  @media (max-width: 780px) {
+    /* Adjust styles for smaller screens */
+    .main-board {
+      width: 80%;
+      height: 80%;
+      margin-bottom: 20px; /* Add space between board and dice container */
+    }
+  
+    .dice-container {
+      position: static; /* Remove absolute positioning on small screens */
+      margin: 0 auto; /* Center horizontally */
+    }
+    .block
+    {
+        height: 44px;
+        width: 44px;
+    }
+    #dice-id
+    {
+        height: 60px; 
+         width:60px; 
+
+    }
+    .dice-container
+    {
+        flex-direction: row;
+   }
+   .main-board
+   {
+     width: 430px;
+   }
+   .dice-container button
+   {
+    padding:10px;
+   }
+  }
+  
