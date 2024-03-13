@@ -7,7 +7,8 @@ const ladderMap = {
 const snakeMap = {
     17:7,54:34,62:19,64:60,87:24,93:73,95:75,98:79
 }
-const Playerpiece = document.getElementById('player_piece');
+const Playerpiece_1 = document.getElementById('player_piece_1');
+const Playerpiece_2 = document.getElementById('player_piece_2');
 let player1Position = 0;
 let isplayer1unockled = false;
 function createMatrix() {
@@ -90,9 +91,9 @@ function movePlayer(dice_value)
     const square = document.querySelector(`.block[data-value="${player1Position}"]`);
     if (square) {
 
-        if (Playerpiece.parentNode) {
-            Playerpiece.parentNode.removeChild(Playerpiece);
-          square.appendChild(Playerpiece);
+        if (Playerpiece_1.parentNode) {
+            Playerpiece_1.parentNode.removeChild(Playerpiece_1);
+          square.appendChild(Playerpiece_1);
         }
       } else {
         console.warn('Invalid new position for player. Position remains unchanged.');

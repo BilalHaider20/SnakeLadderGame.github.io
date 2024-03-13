@@ -12,6 +12,7 @@
     align-items: center;
     height: 100vh;
     width: 100%; /* Allow full viewport width */
+    position: relative;
   }
   
   /* Main Board (Made square using aspect ratio) */
@@ -68,7 +69,7 @@
   
   .dice-container button {
     background-color: rgb(213, 37, 37);
-    padding: 10px 30px;
+    padding: 10px 30px !important;
     border-radius: 10px;
     color: white;
     font-size: 15px;
@@ -77,20 +78,36 @@
     border: 1px solid red;
     box-shadow: 0px 3px 10px gray;
   }
+
+  .player_pieces {
+    position: absolute;
+    left: 50px; /* Adjust the left position as needed */
+    top: 50%; /* Adjust the top position as needed */
+    display: flex;
+    flex-direction: column; /* Stack player pieces in a column */
+    gap: 50px;
+  }
   .goti
   {
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    object-fit: cover;
   }
   .player_piece {
-    height: 40px;
-    width: 40px;
+    
     background-color: transparent;
-    z-index: 1;
-    position: relative; 
+    position: relative;
     transition: top 0.5s ease-in-out, left 0.5s ease-in-out; 
+    display: inline-block;
+    
   }
- 
+
+  .goti:nth-child(2) {
+    z-index: 2; /* Increase z-index of the second goti to make it appear above the first one */
+  }
 
   /* Media Queries for Responsiveness */
   @media (max-width: 780px) {
