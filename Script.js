@@ -158,10 +158,10 @@ function roll()
     {
         currPlayer = "Player 1";    
     }
+    button_value.textContent = currPlayer;
     turn++;
     setTimeout(() => {
         movePlayer(dice_count,currPlayer);
         
     },1000)
-    button_value.textContent = currPlayer;
 }
