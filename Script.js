@@ -10,7 +10,9 @@ const snakeMap = {
 const Playerpiece_1 = document.getElementById('player_piece_1');
 const Playerpiece_2 = document.getElementById('player_piece_2');
 let player1Position = 0;
-let isplayer1unockled = false;
+let player2Position = 0;
+let turn = 1;
+const button_value = document.querySelector('.dice-container button');
 function createMatrix() {
     const MatrixArray = [];
     const n = 10;
@@ -67,10 +69,11 @@ function isGameover(newPosition)
         return false;
         
 }
-function movePlayer(dice_value)
+function movePlayer(dice_value,currPlayer)
 {
-    
-    let newPosition = player1Position + dice_value;
+    if (currPlayer == "Player 1")
+    {
+        let newPosition = player1Position + dice_value;//diff
     if (newPosition > 101)
     {
         return;
@@ -79,14 +82,14 @@ function movePlayer(dice_value)
     {
         winSound.play();
         setTimeout(() => {
-            window.alert("Player 1 Wins ");
+            window.alert("Player 1 Wins ");//diff
             // document.location.reload();
             
         }, 1000);
         console.log("new position is " + newPosition);
         return;
     }
-    player1Position = ladderMap[newPosition] || snakeMap[newPosition] || newPosition;
+    player1Position = ladderMap[newPosition] || snakeMap[newPosition] || newPosition;//diff
     console.log(newPosition);
     const square = document.querySelector(`.block[data-value="${player1Position}"]`);
     if (square) {
@@ -98,13 +101,47 @@ function movePlayer(dice_value)
       } else {
         console.warn('Invalid new position for player. Position remains unchanged.');
       }
+    }
+    else if (currPlayer == "Player 2")
+    {
+        let newPosition = player2Position + dice_value;//diff
+        if (newPosition > 101)
+        {
+            return;
+        }    
+        else if (isGameover(newPosition))
+        {
+            winSound.play();
+            setTimeout(() => {
+                window.alert("Player 2 Wins ");//diff
+                // document.location.reload();
+                
+            }, 1000);
+            console.log("new position is " + newPosition);
+            return;
+        }
+        player2Position = ladderMap[newPosition] || snakeMap[newPosition] || newPosition;//diff
+        console.log(newPosition);
+        const square = document.querySelector(`.block[data-value="${player2Position}"]`);
+        if (square) {
+    
+            if (Playerpiece_2.parentNode) {
+                Playerpiece_2.parentNode.removeChild(Playerpiece_2);
+              square.appendChild(Playerpiece_2);
+            }
+          } else {
+            console.warn('Invalid new position for player. Position remains unchanged.');
+          }  
+    }
+        
+   
 }
 function Getrandom()
 {
     let dice_value = Math.floor(Math.random() * 6 )+1;
     let dice_img = document.getElementById("dice-id");
     dice_img.setAttribute("src", `./Assets/dice${dice_value}.png`);
-    const button_value = document.querySelector('.dice-container button');
+    
     button_value.textContent = dice_value;
     return dice_value;
  }
@@ -112,9 +149,19 @@ function roll()
 {
     rollingSound.play();
     var dice_count = Getrandom();
+    var currPlayer="";
+    if (turn % 2 === 0)
+    {
+        currPlayer = "Player 2";    
+    }
+    else
+    {
+        currPlayer = "Player 1";    
+    }
+    turn++;
     setTimeout(() => {
-        movePlayer(dice_count);
+        movePlayer(dice_count,currPlayer);
         
-    },900)
-    
+    },1000)
+    button_value.textContent = currPlayer;
 }
