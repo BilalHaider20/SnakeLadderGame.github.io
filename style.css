@@ -4,15 +4,24 @@
     padding: 0;
     box-sizing: border-box;
   }
+
+  html, body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
   
   /* Container */
   .container {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
-    width: 100%; /* Allow full viewport width */
-    position: relative;
+    justify-content: center;
   }
   
   /* Main Board (Made square using aspect ratio) */
@@ -21,16 +30,15 @@
     background-image: url("./Assets/GameBoard.jpg");
     background-position: center;
     background-size: cover;
-    width: 500px; /* Set width to 50% */
-    height: 90vh; /* Allow height to adjust based on width */
+    width: 550px; /* Set width to 50% */
     aspect-ratio: 1; /* Maintain a square aspect ratio */
     border-radius: 5px;
     border: 1.5px solid red;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-    /*Add some padding for visual separation*/
     overflow: hidden; /* Prevent board image from overflowing */
     opacity: 1;
     z-index: 0;
+    padding: 5px;
   }
   
   /* Board Squares (generated dynamically using JavaScript) */
@@ -41,15 +49,16 @@
     align-items: center;
     color: white;
     font-size: 20px;
-    height: 50px ;
-    width: 50px;
+    height: 54px ;
     z-index: 0.5;
+    flex: 1;
   }
+
   
   /* Row (generated dynamically using JavaScript) */
   .row {
     display: flex;
-    /* flex-wrap: wrap; Allow squares to wrap on smaller screens */
+     flex-wrap: wrap; /*Allow squares to wrap on smaller screens */
   }
   
   /* Dice Container */
@@ -79,20 +88,20 @@
     box-shadow: 0px 3px 10px gray;
   }
 
-  .player_pieces {
+  .piece-pos{
     position: absolute;
     left: 50px; /* Adjust the left position as needed */
     top: 50%; /* Adjust the top position as needed */
+  }
+
+  .player_pieces {
     display: flex;
     flex-direction: column; /* Stack player pieces in a column */
-    gap: 50px;
   }
   .goti
   {
     height: 45px;
     width: 45px;
-    position: absolute;
-    transform: translate(-50%,-50%);
     z-index: 1;
     object-fit: cover;
   }
@@ -110,40 +119,86 @@
   }
 
   /* Media Queries for Responsiveness */
-  @media (max-width: 780px) {
+  @media screen and (max-width: 890px) {
     /* Adjust styles for smaller screens */
-    .main-board {
-      width: 80%;
-      height: 80%;
-      margin-bottom: 20px; /* Add space between board and dice container */
+    .main-board{
+      width: 450px;
     }
-  
+
     .dice-container {
-      position: static; /* Remove absolute positioning on small screens */
       margin: 0 auto; /* Center horizontally */
     }
-    .block
-    {
-        height: 44px;
-        width: 44px;
-    }
-    #dice-id
-    {
+
+    #dice-id{
         height: 60px; 
-         width:60px; 
+        width:60px; 
 
     }
-    .dice-container
-    {
-        flex-direction: row;
-   }
-   .main-board
-   {
-     width: 430px;
-   }
-   .dice-container button
-   {
+    .dice-container{
+      flex-direction: row;
+    }
+    
+    .dice-container button{
     padding:10px;
-   }
+    }
+
+    .block {
+      height: 44px ;
+    }
+
   }
-  
+
+  @media screen and (max-width: 640px ){
+    .main-board{
+      width: 400px;
+    }
+
+    .block {
+      height: 39px ;
+    }
+  }
+
+  @media screen and (max-width: 580px ){
+    .player_pieces{
+      flex-direction: row;
+    }
+    .dice-container {
+      inset: auto 50px 4% auto;
+    }
+    
+    .piece-pos{
+      inset: auto auto 4% 30px;
+    }
+
+    .block {
+      height: 39px ;
+    }
+    
+  .goti{
+    height: 25px;
+    width: 25px;
+  }
+
+  }
+
+  @media screen and (max-width: 445px ){
+    .main-board{
+      width: 300px;
+    }
+
+    .dice-container {
+      inset: auto 15px 7% auto;
+    }
+    
+    .piece-pos{
+      inset: auto auto 5% 20px;
+    }
+
+    .player_pieces{
+      flex-direction: column;
+    }
+
+    .block {
+      height: 29px ;
+    }
+  }
