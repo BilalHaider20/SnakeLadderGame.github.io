@@ -9,6 +9,7 @@ const snakeMap = {
 }
 const Playerpiece_1 = document.getElementById('player_piece_1');
 const Playerpiece_2 = document.getElementById('player_piece_2');
+
 let player1Position = 0;
 let player2Position = 0;
 let turn = 1;
