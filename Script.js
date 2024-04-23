@@ -9,6 +9,8 @@ const snakeMap = {
 }
 const Playerpiece_1 = document.getElementById('player_piece_1');
 const Playerpiece_2 = document.getElementById('player_piece_2');
+const player1_info = document.querySelector('#players-info #Player-1-stats');
+const player2_info = document.querySelector('#players-info #Player-2-stats');
 
 let player1Position = 0;
 let player2Position = 0;
@@ -87,11 +89,13 @@ function movePlayer(dice_value,currPlayer)
             // document.location.reload();
             
         }, 1000);
-        console.log("new position is " + newPosition);
+        // console.log("new position is " + newPosition);
         return;
     }
     player1Position = ladderMap[newPosition] || snakeMap[newPosition] || newPosition;//diff
-    console.log(newPosition);
+    // console.log(newPosition);
+    let player_pos_stats = player1_info.querySelector(".position-stats");
+    player_pos_stats.innerText = `${player1Position}`;  
     const square = document.querySelector(`.block[data-value="${player1Position}"]`);
     if (square) {
 
@@ -118,11 +122,13 @@ function movePlayer(dice_value,currPlayer)
                 // document.location.reload();
                 
             }, 1000);
-            console.log("new position is " + newPosition);
+            // console.log("new position is " + newPosition);
             return;
         }
         player2Position = ladderMap[newPosition] || snakeMap[newPosition] || newPosition;//diff
-        console.log(newPosition);
+        // console.log(newPosition);
+        let player_pos_stats = player2_info.querySelector(".position-stats");
+        player_pos_stats.innerText = `${player2Position}`; 
         const square = document.querySelector(`.block[data-value="${player2Position}"]`);
         if (square) {
     
@@ -153,11 +159,15 @@ function roll()
     var currPlayer="";
     if (turn % 2 === 0)
     {
-        currPlayer = "Player 2";    
+        currPlayer = "Player 2";
+        let player2_dice_stats = player2_info.querySelector(".dice-stats");
+        player2_dice_stats.innerText = `${dice_count}`;
     }
     else
     {
-        currPlayer = "Player 1";    
+        currPlayer = "Player 1"; 
+        let player1_dice_stats = player1_info.querySelector(".dice-stats");
+        player1_dice_stats.innerText = `${dice_count}`;
     }
     button_value.textContent = currPlayer;
     turn++;
