@@ -95,17 +95,9 @@ function movePlayer(dice_value,currPlayer)
     player1Position = ladderMap[newPosition] || snakeMap[newPosition] || newPosition;//diff
     // console.log(newPosition);
     let player_pos_stats = player1_info.querySelector(".position-stats");
-    player_pos_stats.innerText = `${player1Position}`;  
-    const square = document.querySelector(`.block[data-value="${player1Position}"]`);
-    if (square) {
-
-        if (Playerpiece_1.parentNode) {
-            Playerpiece_1.parentNode.removeChild(Playerpiece_1);
-          square.appendChild(Playerpiece_1);
-        }
-      } else {
-        console.warn('Invalid new position for player. Position remains unchanged.');
-      }
+        player_pos_stats.innerText = `${player1Position}`;  
+        playerMovement(player1Position, Playerpiece_1);
+   
     }
     else if (currPlayer == "Player 2")
     {
@@ -129,19 +121,24 @@ function movePlayer(dice_value,currPlayer)
         // console.log(newPosition);
         let player_pos_stats = player2_info.querySelector(".position-stats");
         player_pos_stats.innerText = `${player2Position}`; 
-        const square = document.querySelector(`.block[data-value="${player2Position}"]`);
+        playerMovement(player2Position, Playerpiece_2);
+       
+    }
+        
+   
+}
+function playerMovement(PlayerPosition,PlayerPiece)
+{
+    const square = document.querySelector(`.block[data-value="${PlayerPosition}"]`);
         if (square) {
     
-            if (Playerpiece_2.parentNode) {
-                Playerpiece_2.parentNode.removeChild(Playerpiece_2);
-              square.appendChild(Playerpiece_2);
+            if (PlayerPiece.parentNode) {
+                PlayerPiece.parentNode.removeChild(PlayerPiece);
+              square.appendChild(PlayerPiece);
             }
           } else {
             console.warn('Invalid new position for player. Position remains unchanged.');
           }  
-    }
-        
-   
 }
 function Getrandom()
 {
